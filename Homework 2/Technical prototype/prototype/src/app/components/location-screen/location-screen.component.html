@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="container">
+    <mat-card class="main-mat-card">
+        <mat-card-content>
+            <div class="split-screen">
+                <div class="screen-one">
+                    <div class="map"
+                    leaflet
+                    [leafletOptions]="options">
+                </div>
+                </div>
+                <div class="screen-two">
+                    <mat-card class="description-card">
+                        <mat-card-title>
+                            <h1><b>{{name}}</b></h1>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <p>English Name: {{nameEn}}</p>
+                            <p>Phone: {{phone}}</p>
+                            <p>Oppening Hours: {{opening_hours}}</p>
+                            <p>Website: {{website}}</p>
+                            <a [href]="wikipediaLink">Wikipedia</a>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
