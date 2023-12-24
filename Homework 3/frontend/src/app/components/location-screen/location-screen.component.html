@@ -10,16 +10,16 @@
                 </div>
                 </div>
                 <div class="screen-two">
-                    <mat-card class="description-card">
+                    <mat-card class="description-card" [formGroup]="form">
                         <mat-card-title>
-                            <h1><b>{{name}}</b></h1>
+                            <h1><b>{{form.controls.name.value}}</b></h1>
                         </mat-card-title>
                         <mat-card-content>
-                            <p>English Name: {{nameEn}}</p>
-                            <p>Phone: {{phone}}</p>
-                            <p>Oppening Hours: {{opening_hours}}</p>
-                            <p>Website: {{website}}</p>
-                            <a [href]="wikipediaLink">Wikipedia</a>
+                            <p>English Name: {{form.controls.nameEn.value}}</p>
+                            <p>Phone: {{form.controls.phone.value}}</p>
+                            <p>Oppening Hours: {{form.controls.opening_hours.value}}</p>
+                            <p>Website: <a [href]="form.controls.website.value" target="_blank">{{form.controls.website.value}}</a></p>
+                            <a [href]="form.controls.wikipediaLink.value">Wikipedia</a>
                         </mat-card-content>
                     </mat-card>
                 </div>
