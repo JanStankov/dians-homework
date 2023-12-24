@@ -76,7 +76,7 @@ export class LocationScreenComponent {
     this.options.layers?.push(
       new Leaflet.Marker(new Leaflet.LatLng(41.99681248469134, 21.42911078427046), {
         icon: this.blueIcon,
-        title: 'Chifte Hammam National Gallery of Macedonia'
+        title: 'Museum Of Illusions'
       } as Leaflet.MarkerOptions).on('click', (e) => {
         this.form.controls.name.setValue("Музеј на илузии");
         this.form.controls.nameEn.setValue('Museum Of Illusions');
@@ -87,6 +87,10 @@ export class LocationScreenComponent {
         this.cd.detectChanges();
         console.log(this.form.controls.name.value);
       }));
+    
+    console.log(this.options)
+    this.cd.detectChanges();
+    
   }
   //MAP
 }
