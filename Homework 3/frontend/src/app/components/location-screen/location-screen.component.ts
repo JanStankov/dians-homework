@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import * as Leaflet from 'leaflet';;
+import * as Leaflet from 'leaflet';import { MarkerService } from '../services/marker-service';
+;
 
 @Component({
   selector: 'app-location-screen',
@@ -8,6 +9,10 @@ import * as Leaflet from 'leaflet';;
   styleUrls: ['./location-screen.component.scss']
 })
 export class LocationScreenComponent {
+  
+  //Description
+  nameSearch = new FormControl('');
+ 
   form: FormGroup = new FormGroup({
     name: new FormControl("Музеј на Град Скопје"),
     nameEn: new FormControl('Museum of the City of Skopje'),
@@ -16,9 +21,6 @@ export class LocationScreenComponent {
     website: new FormControl("http://www.mgs.org.mk/"),
     wikipediaLink: new FormControl("https://en.wikipedia.org/wiki/en:Museum%20of%20the%20City%20of%20Skopje?uselang=en"),
   });
-  //Description
-  
- 
   //Map
   blueIcon = Leaflet.icon({
     iconUrl: 'assets/blue-marker.svg',
@@ -65,8 +67,11 @@ export class LocationScreenComponent {
     zoom: 15,
     center: new Leaflet.LatLng(41.9950, 21.4300)
   };
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(private cd: ChangeDetectorRef, private markerService: MarkerService) { }
 
+
+  search(){
+  }
 //MAP
 }
 

@@ -2,6 +2,13 @@
 <div class="container">
     <mat-card class="main-mat-card">
         <mat-card-content>
+            <div> 
+                <mat-form-field appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input type="text" matInput [formControl]="nameSearch">
+                </mat-form-field>
+                <button mat-raised-button class="filter-field" color="primary" (click)="search()">Location</button>
+            </div>
             <div class="split-screen">
                 <div class="screen-one">
                     <div class="map"
