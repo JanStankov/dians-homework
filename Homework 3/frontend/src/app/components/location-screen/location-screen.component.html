@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container">
+<div class="container" *ngIf="ready">
     <mat-card class="main-mat-card">
         <mat-card-content>
             <div> 
@@ -11,7 +11,7 @@
             </div>
             <div class="split-screen">
                 <div class="screen-one">
-                    <div class="map"
+                    <div class="map" 
                     leaflet
                     [leafletOptions]="options">
                 </div>

@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import * as Leaflet from 'leaflet';
 import { MarkerService } from '../services/marker-service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -10,9 +11,10 @@ import { MarkerService } from '../services/marker-service';
   styleUrls: ['./location-screen.component.scss']
 })
 export class LocationScreenComponent {
-  
   //Description
   nameSearch = new FormControl('');
+  params ='';
+  markersLayer:any;
  
   form: FormGroup = new FormGroup({
     name: new FormControl("Музеј на Град Скопје"),
@@ -28,7 +30,7 @@ export class LocationScreenComponent {
     iconSize: [40, 31],
     iconAnchor: [13, 41]
   });
-  getMarkers = (): Leaflet.Marker[] => {
+  getMarkers1 = (): Leaflet.Marker[] => {
     return [
       new Leaflet.Marker(new Leaflet.LatLng(42.001588750563734, 21.437307553512774), {
         icon: this.blueIcon,
@@ -58,22 +60,8 @@ export class LocationScreenComponent {
     ] as Leaflet.Marker[];
   };
 
-  options: Leaflet.MapOptions = {
-    layers: [
-        ...this.getMarkers(),
-        new Leaflet.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap contributors'
-        } as Leaflet.TileLayerOptions),
-      ],
-    zoom: 15,
-    center: new Leaflet.LatLng(41.9950, 21.4300)
-  };
-  constructor(private cd: ChangeDetectorRef, private markerService: MarkerService) { }
-
-
-  search() {
-    console.log('hi')
-    this.options.layers?.push(
+  getMarkers2 = (): Leaflet.Marker[] => {
+    return [
       new Leaflet.Marker(new Leaflet.LatLng(41.99681248469134, 21.42911078427046), {
         icon: this.blueIcon,
         title: 'Museum Of Illusions'
@@ -86,12 +74,44 @@ export class LocationScreenComponent {
         this.form.controls.wikipediaLink.setValue("/");
         this.cd.detectChanges();
         console.log(this.form.controls.name.value);
-      }));
-    
-    console.log(this.options)
-    this.cd.detectChanges();
-    
+      })
+    ] as Leaflet.Marker[];
+  };
+  ready = false;
+  options: Leaflet.MapOptions;
+  constructor(private cd: ChangeDetectorRef, private markerService: MarkerService,private route: ActivatedRoute,private router: Router) { 
+    this.route.queryParams.subscribe(params => {
+      console.log(params['location']); // logs 'value1'
+      this.markersLayer = this.params === 'museum_of_illusions' ? this.getMarkers1() : this.getMarkers2();
+      this.options = {
+        layers: [
+            ...this.markersLayer,
+            new Leaflet.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '&copy; OpenStreetMap contributors'
+            } as Leaflet.TileLayerOptions),
+          ],
+        zoom: 15,
+        center: new Leaflet.LatLng(41.9950, 21.4300)
+        
+   
+  };
+      this.ready = true;
+    });
   }
+
+  
+
+  search() {
+    this.goToPageWithQueryParams();
+    this.cd.detectChanges();
+  }
+
+  goToPageWithQueryParams() {
+    this.router.navigate([], { 
+      queryParams: { location: 'museum_of_illusions', },
+      queryParamsHandling: 'merge'
+    });
+   }
   //MAP
 }
 
