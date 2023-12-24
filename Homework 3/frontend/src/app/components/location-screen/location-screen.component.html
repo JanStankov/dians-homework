@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container" *ngIf="ready">
+<div class="container" >
     <mat-card class="main-mat-card">
         <mat-card-content>
             <div> 
@@ -26,7 +26,7 @@
                             <p>Phone: {{form.controls.phone.value}}</p>
                             <p>Oppening Hours: {{form.controls.opening_hours.value}}</p>
                             <p>Website: <a [href]="form.controls.website.value" target="_blank">{{form.controls.website.value}}</a></p>
-                            <a [href]="form.controls.wikipediaLink.value">Wikipedia</a>
+                            <a [href]="form.controls.wikipediaLink.value" target="_blank">Wikipedia</a>
                         </mat-card-content>
                     </mat-card>
                 </div>

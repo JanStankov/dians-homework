@@ -77,25 +77,22 @@ export class LocationScreenComponent {
       })
     ] as Leaflet.Marker[];
   };
-  ready = false;
+  
   options: Leaflet.MapOptions;
-  constructor(private cd: ChangeDetectorRef, private markerService: MarkerService,private route: ActivatedRoute,private router: Router) { 
+  constructor(private cd: ChangeDetectorRef, private markerService: MarkerService, private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(params => {
-      console.log(params['location']); // logs 'value1'
-      this.markersLayer = this.params === 'museum_of_illusions' ? this.getMarkers1() : this.getMarkers2();
+      console.log(params['location']); 
+      this.markersLayer = this.getMarkers1();
       this.options = {
         layers: [
-            ...this.markersLayer,
-            new Leaflet.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '&copy; OpenStreetMap contributors'
-            } as Leaflet.TileLayerOptions),
-          ],
+          ...this.markersLayer,
+          new Leaflet.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+          } as Leaflet.TileLayerOptions),
+        ],
         zoom: 15,
         center: new Leaflet.LatLng(41.9950, 21.4300)
-        
-   
-  };
-      this.ready = true;
+      };
     });
   }
 
