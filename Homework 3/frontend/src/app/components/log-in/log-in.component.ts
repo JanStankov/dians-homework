@@ -13,8 +13,8 @@ export class LogInComponent {
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
     surname: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required]),
   });
 
   constructor( 
@@ -35,8 +35,8 @@ export class LogInComponent {
       this.form = new FormGroup({
         name: new FormControl(''),
         surname: new FormControl(''),
-        email: new FormControl(''),
-        password: new FormControl(''),
+        email: new FormControl('',[Validators.required]),
+        password: new FormControl('',[Validators.required]),
       });
       this.form.markAsPristine()
     }
