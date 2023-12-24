@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import * as Leaflet from 'leaflet';import { MarkerService } from '../services/marker-service';
-;
+import * as Leaflet from 'leaflet';
+import { MarkerService } from '../services/marker-service';
+
 
 @Component({
   selector: 'app-location-screen',
@@ -70,9 +71,24 @@ export class LocationScreenComponent {
   constructor(private cd: ChangeDetectorRef, private markerService: MarkerService) { }
 
 
-  search(){
+  search() {
+    console.log('hi')
+    this.options.layers?.push(
+      new Leaflet.Marker(new Leaflet.LatLng(41.99681248469134, 21.42911078427046), {
+        icon: this.blueIcon,
+        title: 'Chifte Hammam National Gallery of Macedonia'
+      } as Leaflet.MarkerOptions).on('click', (e) => {
+        this.form.controls.name.setValue("Музеј на илузии");
+        this.form.controls.nameEn.setValue('Museum Of Illusions');
+        this.form.controls.phone.setValue("071344379");
+        this.form.controls.opening_hours.setValue("Mo-Su 08:00-20:00");
+        this.form.controls.website.setValue("/");
+        this.form.controls.wikipediaLink.setValue("/");
+        this.cd.detectChanges();
+        console.log(this.form.controls.name.value);
+      }));
   }
-//MAP
+  //MAP
 }
 
 
