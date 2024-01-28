@@ -26,7 +26,9 @@ namespace MapMicroservice.Services
                 _artGalleriesAndMuseums = osmData
                     .Where(e => e is Node node && e.Tags != null &&
                                 (e.Tags.ContainsKey("amenity") &&
-                                 (e.Tags["amenity"] == "art_gallery" || e.Tags["amenity"] == "museum")))
+                                 (e.Tags["amenity"] == "art_gallery" || e.Tags["amenity"] == "museum") &&
+                                 e.Tags.ContainsKey("admin_level") && e.Tags["admin_level"] == "8" &&
+                                 e.Tags.ContainsKey("name") && e.Tags["name"] == "Skopje"))
                     .Select(e => new ArtGalleryOrMuseum
                     {
                         Id = (long)((Node)e).Id,
