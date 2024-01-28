@@ -18,7 +18,7 @@ namespace MapMicroservice.Services
         {
             _artGalleriesAndMuseums = new List<ArtGalleryOrMuseum>();
 
-            using (var reader = new PBFOsmStreamSource(new FileInfo("osm file").OpenRead()))
+            using (var reader = new PBFOsmStreamSource(new FileInfo("osm_map/macedonia-latest.osm.pbf").OpenRead()))
             {
                 var osmData = reader.ToArray();
 
