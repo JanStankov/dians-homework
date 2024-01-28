@@ -11,9 +11,9 @@
             </div>
             <div class="split-screen">
                 <div class="screen-one">
-                    <div class="map" 
-                    leaflet
-                    [leafletOptions]="options">
+                    <div class="flex-auto">
+                        <div leaflet [leafletOptions]="options" [leafletLayers]="layers"></div>
+                      </div>
                 </div>
                 </div>
                 <div class="screen-two">
@@ -22,11 +22,13 @@
                             <h1><b>{{form.controls.name.value}}</b></h1>
                         </mat-card-title>
                         <mat-card-content>
-                            <p>English Name: {{form.controls.nameEn.value}}</p>
-                            <p>Phone: {{form.controls.phone.value}}</p>
-                            <p>Oppening Hours: {{form.controls.opening_hours.value}}</p>
-                            <p>Website: <a [href]="form.controls.website.value" target="_blank">{{form.controls.website.value}}</a></p>
-                            <a [href]="form.controls.wikipediaLink.value" target="_blank">Wikipedia</a>
+                            <div *ngIf="selectedItem">
+                                <h2>{{ selectedItem.name }}</h2>
+                                <p>{{ selectedItem.address }}</p>
+                                <p>Rating: {{ selectedItem.rating }}</p>
+                                <p><a href="{{ selectedItem.website }}">Website</a></p>
+                                
+                              </div>
                         </mat-card-content>
                     </mat-card>
                 </div>
