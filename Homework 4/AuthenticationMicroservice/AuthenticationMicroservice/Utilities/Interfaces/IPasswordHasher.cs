@@ -1,4 +1,4 @@
-﻿namespace WeatherAPI.Utilities.Interfaces
+﻿namespace AuthenticationMicroservice.Utilities.Interfaces
 {
     public interface IPasswordHasher
     {
