@@ -25,10 +25,8 @@ namespace MapMicroservice.Services
                 // Filter the data to get only the art galleries and museums
                 _artGalleriesAndMuseums = osmData
                     .Where(e => e is Node node && e.Tags != null &&
-                                (e.Tags.ContainsKey("amenity") &&
-                                 (e.Tags["amenity"] == "art_gallery" || e.Tags["amenity"] == "museum") &&
-                                 e.Tags.ContainsKey("admin_level") && e.Tags["admin_level"] == "8" &&
-                                 e.Tags.ContainsKey("name") && e.Tags["name"] == "Skopje"))
+                                (e.Tags.ContainsKey("tourism") &&
+                                 (e.Tags["tourism"] == "art_gallery" || e.Tags["tourism"] == "museum") ))
                     .Select(e => new ArtGalleryOrMuseum
                     {
                         Id = (long)((Node)e).Id,
