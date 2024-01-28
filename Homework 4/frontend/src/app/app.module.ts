@@ -32,14 +32,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { ErrorDialogService } from './services/error-dialog.service';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LogInComponent,
-    LocationScreenComponent
+    LocationScreenComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -70,10 +74,22 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    MatMenuModule,
-    LeafletModule
+    MatMenuModule
   ],
   providers: [
+    ErrorDialogService,
+    {
+      // interceptor to add headers / token
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      // interceptor to add headers / token
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
