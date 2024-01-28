@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
-using WeatherAPI.Utilities.Interfaces;
+using AuthenticationMicroservice.Utilities.Interfaces;
 
-namespace WeatherAPI.Utilities
+namespace AuthenticationMicroservice.Utilities
 {
     public class PasswordHasher: IPasswordHasher
     {
