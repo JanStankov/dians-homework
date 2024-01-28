@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 64px);
+    background-color: #a9a9a914;
+}
+
+.mat-mdc-card-header {
+    justify-content: center;
+}
+
+.main-mat-card {
+    width: 90%;
+    height: 90%;
+    overflow: auto;
+}
+
+.split-screen{
+    display: flex;
+    flex-direction: row;
+}
+
+.screen-one{
+    width: 50%;
+    height: 100%;
+}
+.screen-two{
+    width: 50%;
+    height: 100%;
+}
+// MAP
+
+.map-frame {
+    border: 2px solid black;
+    height: 100%;
+}
+
+.map {
+    height: 500px;
+}
+
+//End MAP
+
+.description-card{
+    height: 100%;
+    margin: 10px;
+    padding: 20px;
+}
+
