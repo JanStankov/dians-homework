@@ -16,7 +16,7 @@ export class ArtGalleryOrMuseumService {
     return this.http.get<ArtGalleryOrMuseum[]>(this.apiUrl);
  }
 
- getByName(name: string): Observable<ArtGalleryOrMuseum> {
+ getByName(name?: string): Observable<ArtGalleryOrMuseum> {
     return this.http.get<ArtGalleryOrMuseum>(`${this.apiUrl}/${name}`);
  }
 }

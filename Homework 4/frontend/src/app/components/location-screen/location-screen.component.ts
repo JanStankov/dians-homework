@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import * as L from 'leaflet';
 import { ArtGalleryOrMuseum } from 'src/app/models/art-gallery-or-museum';
 import { ArtGalleryOrMuseumService } from 'src/app/services/art-gallery-or-museum-service';
@@ -9,6 +10,7 @@ import { ArtGalleryOrMuseumService } from 'src/app/services/art-gallery-or-museu
  styleUrls: ['./location-screen.component.css']
 })
 export class AppComponent {
+ nameSearch = new FormControl('');
  searchTerm: string;
  selectedItem: ArtGalleryOrMuseum;
  options = {};
@@ -24,15 +26,9 @@ export class AppComponent {
    };
  }
 
- onSearch() {
-    this.artGalleryOrMuseumService.getByName(this.searchTerm).subscribe((item: ArtGalleryOrMuseum) => {
-      this.selectedItem = item;
-      const marker = L.marker([item.latitude, item.longitude]).addTo(this.layers[0]);
-    });
- }
 
- onSearch2() {
-    this.artGalleryOrMuseumService.getByName(this.searchTerm).subscribe((item: ArtGalleryOrMuseum) => {
+ onSearch(){
+    this.artGalleryOrMuseumService.getByName(this.nameSearch.value).subscribe((item: ArtGalleryOrMuseum) => {
       this.selectedItem = item;
       const marker = L.marker([item.latitude, item.longitude], {
         riseOnHover: true
